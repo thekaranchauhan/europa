@@ -1,6 +1,20 @@
+'use client';
+import { type } from "os";
 import NewsLatterBox from "./NewsLatterBox";
+import { FC } from "react";
+import { useForm } from "react-hook-form";
+import { sendEmail } from "@/utils/send-email";
+import { FormData } from "@/types/formdata";
 
-const Contact = () => {
+
+
+
+const Contact: FC = () => {
+  const { register, handleSubmit } = useForm<FormData>();
+  
+  function onSubmit(data: FormData) {
+    sendEmail(data);
+  }
   return (
     <section id="contact" className="overflow-hidden py-16 md:py-20 lg:py-28">
       <div className="container">
@@ -17,7 +31,7 @@ const Contact = () => {
               <p className="mb-12 text-base font-medium text-body-color">
                 We will get back to you ASAP.
               </p>
-              <form>
+              <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="-mx-4 flex flex-wrap">
                   <div className="w-full px-4 md:w-1/2">
                     <div className="mb-8">
@@ -30,7 +44,7 @@ const Contact = () => {
                       <input
                         type="text"
                         placeholder="Enter your name"
-                        className="w-full rounded-md border border-transparent py-3 px-6 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp"
+                        className="w-full rounded-md border border-transparent py-3 px-6 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp" {...register('name', { required: true })}
                         required
                       />
                     </div>
@@ -46,7 +60,7 @@ const Contact = () => {
                       <input
                         type="email"
                         placeholder="Enter your email"
-                        className="w-full rounded-md border border-transparent py-3 px-6 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp"
+                        className="w-full rounded-md border border-transparent py-3 px-6 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp" {...register('email', { required: true })}
                         required
                       />
                     </div>
@@ -62,7 +76,7 @@ const Contact = () => {
                       <input
                         type="tel"
                         placeholder="Enter contact number"
-                        className="w-full rounded-md border border-transparent py-3 px-6 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp"
+                        className="w-full rounded-md border border-transparent py-3 px-6 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp" {...register('contact', { required: true })}
                         required
                       />
                     </div>
@@ -79,7 +93,7 @@ const Contact = () => {
                         name="message"
                         rows={5}
                         placeholder="Enter your Message"
-                        className="w-full resize-none rounded-md border border-transparent py-3 px-6 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp"
+                        className="w-full resize-none rounded-md border border-transparent py-3 px-6 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp" {...register('message', { required: true })}
                       ></textarea>
                     </div>
                   </div>
