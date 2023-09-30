@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emailjs/browser": "^3.11.0",
     "@next/font": "13.1.6",
     "@types/nodemailer": "^6.4.11",
     "dotenv": "^16.3.1",
