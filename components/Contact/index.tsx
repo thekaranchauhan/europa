@@ -1,8 +1,6 @@
 "use client";
-import NewsLatterBox from "./NewsLatterBox";
-import emailjs from "@emailjs/browser";
-import React, { useState } from "react";
-
+import React, { useState } from 'react';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const [isSuccess, setIsSuccess] = useState(false);
@@ -10,39 +8,51 @@ const Contact = () => {
   const sendEmail = (e) => {
     e.preventDefault();
 
-    // Use your service ID, template ID, and user ID from EmailJS
-    const serviceID = "service_023wni6";
-    const templateID = "template_bbqqt9b";
-    const userID = "VRIU_kQD3N7ub85Fl";
+    const serviceID = 'service_j0s9v0r';
+    const templateID = 'template_jhxwrwc';
+    const userID = 'Q45Drc10lrcAw0vE_';
 
-    // Get values from the form
     const name = e.target.name.value;
     const email = e.target.email.value;
-    const contactNumber = e.target.contactNumber.value;
+    const contact = e.target.contact.value;
     const message = e.target.message.value;
 
-    // Prepare the data to be sent
     const templateParams = {
       name,
       email,
-      contactNumber,
+      contact,
       message,
     };
 
-    // Send the email
     emailjs
-    .send(serviceID, templateID, templateParams, userID)
-    .then((response) => {
-      console.log("Email sent successfully:", response);
-      setIsSuccess(true);
+      .send(serviceID, templateID, templateParams, userID)
+      .then((response) => {
+        console.log('Email sent successfully:', response);
+        setIsSuccess(true);
 
-      // Reset the form fields
-      e.target.reset();
-    })
-    .catch((error) => {
-      console.error("Error sending email:", error);
-    });
-};
+        // Reset the form fields
+        e.target.reset();
+      })
+      .catch((error) => {
+        console.error('Error sending email:', error);
+      });
+  };
+
+  const validateEmail = (event) => {
+    const email = event.target.value;
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validatePhone = (event) => {
+    const phone = event.target.value;
+    // Phone number validation for India with optional country code +91 and exactly 10 digits
+    const phoneRegex = /^(\+91)?[6-9]\d{9}$/;
+    const isNumeric = /^\d+$/;
+
+    return isNumeric.test(phone) && phoneRegex.test(phone);
+  };
 
   return (
     <section id="contact" className="overflow-hidden py-16 md:py-20 lg:py-28">
@@ -90,9 +100,15 @@ const Contact = () => {
                         type="email"
                         name="email"
                         placeholder="Enter your email"
-                        className="w-full rounded-md border border-transparent py-3 px-6 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp"
+                        className={`w-full rounded-md border border-transparent py-3 px-6 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp ${
+                          !validateEmail && 'border-red-500'
+                        }`}
                         required
+                        onBlur={validateEmail}
                       />
+                      {!validateEmail && (
+                        <p className="text-sm text-red-500 mt-1">Invalid email address</p>
+                      )}
                     </div>
                   </div>
                   <div className="w-full px-4 md:w-1/2">
@@ -104,12 +120,19 @@ const Contact = () => {
                         Your Contact Number
                       </label>
                       <input
+                        pattern='[0-9]{10}'
                         type="tel"
-                        name="contactNumber"
+                        name="contact"
                         placeholder="Enter contact number"
-                        className="w-full rounded-md border border-transparent py-3 px-6 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp"
+                        className={`w-full rounded-md border border-transparent py-3 px-6 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp ${
+                          !validatePhone && 'border-red-500'
+                        }`}
                         required
+                        onBlur={validatePhone}
                       />
+                      {!validatePhone && (
+                        <p className="text-sm text-red-500 mt-1">Invalid phone number</p>
+                      )}
                     </div>
                   </div>
                   <div className="w-full px-4">
