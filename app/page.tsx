@@ -11,14 +11,8 @@ import Testimonials from "@/components/Testimonials";
 // import Video from "@/components/Video";
 import { Inter } from "@next/font/google";
 import exp from "constants";
-import type { Metadata } from "next";
 
 const inter = Inter({ subsets: ["latin"] });
-
-export const meta: Metadata = {
-  title: "Europa Fusion",
-  description: "Europa Fusion is a new way of learning, a new way of teaching.",
-};
 
 export default function Home() {
   return (
