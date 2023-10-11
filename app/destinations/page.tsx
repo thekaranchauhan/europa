@@ -7,7 +7,7 @@ const DestinationsPage = () => {
     <>
       <Breadcrumb
         pageName="Destinations"
-        description="Destination that suits your needs, studies and future."
+        description="Discover Your Path to Excellence with Europa Fusion."
       />
       <Destinations />
     </>
