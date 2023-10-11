@@ -21,15 +21,22 @@ const menuData: Menu[] = [
   },
   {
     id: 4,
-    title: "Become Partner",
-    path: "/partner",
-    newTab: false,
-  },
-  {
-    id: 5,
     title: "Destinations",
     path: "/destinations",
     newTab: false,
   },
+  {
+    id: 5,
+    title: "Medical",
+    path: "/medical",
+    newTab: false,
+  },
+  {
+    id: 6,
+    title: "Become Partner",
+    path: "/partner",
+    newTab: false,
+  },
+  
 ];
 export default menuData;

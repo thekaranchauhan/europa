@@ -2,19 +2,21 @@
 import React, { useState } from 'react';
 import emailjs from '@emailjs/browser';
 
-const Contact = () => {
+const MedicalContact = () => {
   const [isSuccess, setIsSuccess] = useState(false);
 
   const sendEmail = (e) => {
     e.preventDefault();
 
-    const serviceID = 'service_j0s9v0r';
-    const templateID = 'template_jhxwrwc';
+    const serviceID = 'service_ounkmaj';
+    const templateID = 'template_v3vcmss';
     const userID = 'Q45Drc10lrcAw0vE_';
 
     const name = e.target.name.value;
     const email = e.target.email.value;
     const contact = e.target.contact.value;
+    const position = e.target.position.value;
+    const country = e.target.country.value;
     const message = e.target.message.value;
 
     const templateParams = {
@@ -22,6 +24,8 @@ const Contact = () => {
       email,
       contact,
       message,
+      position,
+      country,
     };
 
     emailjs
@@ -135,6 +139,42 @@ const Contact = () => {
                       )}
                     </div>
                   </div>
+                  <div className="w-full px-4 md:w-1/2">
+                    <div className="mb-8">
+                      <label
+                        htmlFor="position"
+                        className="mb-3 block text-sm font-medium text-dark dark:text-white"
+                      >
+                        Interested Job Position
+                      </label>
+                      <textarea
+                        name="position"
+                        rows={1}
+                        placeholder="Eg: OT Nurse"
+                        className={`w-full rounded-md border border-transparent py-3 px-6 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp`}
+                        required
+                      />
+                      <span className='text-xs'>If multiple positions, please seperate by comma</span>
+                    </div>
+                  </div>
+                  <div className="w-full px-4 md:w-1/2">
+                    <div className="mb-8">
+                      <label
+                        htmlFor="country"
+                        className="mb-3 block text-sm font-medium text-dark dark:text-white"
+                      >
+                        Interested Country
+                      </label>
+                      <textarea
+                        name="country"
+                        rows={1}
+                        placeholder="Eg: England"
+                        className={`w-full rounded-md border border-transparent py-3 px-6 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp`}
+                        required
+                      />
+                      <span className='text-xs'>If multiple countries, please seperate by comma</span>
+                    </div>
+                  </div>
                   <div className="w-full px-4">
                     <div className="mb-8">
                       <label
@@ -169,10 +209,13 @@ const Contact = () => {
               )}
             </div>
           </div>
+          <div className="w-full px-4 lg:w-5/12 xl:w-4/12">
+            {/* <NewsLatterBox /> */}
+          </div>
         </div>
       </div>
     </section>
   );
 };
 
-export default Contact;
+export default MedicalContact;

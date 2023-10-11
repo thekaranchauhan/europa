@@ -10,7 +10,7 @@ const destinationsData: Destinations[] = [
   },
   {
     id: 2,
-    image: "/images/destinations/au.png",
+    image: "/images/destinations/australia.png",
     title: "Australia",
     link: "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-finder"
   },
